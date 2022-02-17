@@ -59,7 +59,7 @@ let p = document.createElement ("p")
 p.innerText = "Selecciona"
 container.appendChild(p)
 
-let contador= 4
+let contador= 0
 let piedra = creaButton("piedra")
 let papel = creaButton("papel")
 let tijera = creaButton("tijera")
