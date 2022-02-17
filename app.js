@@ -34,9 +34,12 @@ function playUi (Event) {
 }
 
 function gameOver (result){
-    //escribir una funcion que deshabilite los botones y publique el fn del juego con el resultado
-    console.log(result);
+    //escribir una funcion que deshabilite los botones.
+    const buttons = document. querySelectorAll('button')
+    buttons.forEach ( e => e.disabled = true)
+    p.innerText = `Fin del Juego. ${result}.`
 }
+
 
 let container = document.querySelector(".container");
 let p = document.createElement ("p")
