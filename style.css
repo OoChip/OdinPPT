@@ -1,0 +1,38 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    margin: 5vw;
+}
+
+#piedra{
+    width: 15vw;
+    height: 15vw;
+    background-image: url(./img/piedra.svg);
+
+}
+
+#papel {
+    width: 15vw;
+    height: 15vw;
+    background-image: url(./img/papel.svg)
+}
+
+#tijera {
+    width: 15vw;
+    height: 15vw;
+    background-image: url(./img/tijera.svg)
+}
+
+#start {
+    width: 10vw;
+    height: 10vw;
+    align-self:stretch;
+
+}
+
+h1 {
+    justify-self: center;
+}

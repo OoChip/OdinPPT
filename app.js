@@ -1,7 +1,10 @@
 function creaButton (nombre){
     let button = document.createElement ("button")
     button.setAttribute("id", nombre)
-    button.innerText = nombre
+    // let img= document.createElement ("img")
+    // img.setAttribute("src", `./img/${nombre}.svg`)
+    button.textContent = nombre
+    console.log(button);
     let container = document.querySelector(".container");
     container.appendChild (button);
     return (button)
@@ -37,19 +40,32 @@ function gameOver (result){
     //escribir una funcion que deshabilite los botones.
     const buttons = document. querySelectorAll('button')
     buttons.forEach ( e => e.disabled = true)
+    start.hidden = false
+    start.disabled = false
     p.innerText = `Fin del Juego. ${result}.`
+    
 }
 
+function restart () {
+    contador = 0
+    const buttons = document. querySelectorAll('button')
+    buttons.forEach ( Element => Element.disabled = false)
+    p.innerText = `Juego Nuevo.`
+    start.hidden = true
+ }
 
 let container = document.querySelector(".container");
 let p = document.createElement ("p")
 p.innerText = "Selecciona"
 container.appendChild(p)
 
-let contador= 0
+let contador= 4
 let piedra = creaButton("piedra")
 let papel = creaButton("papel")
 let tijera = creaButton("tijera")
+let start= creaButton("start")
+start.hidden= true
 piedra.addEventListener ("click",  playUi)
 papel.addEventListener ("click",  playUi)
 tijera.addEventListener ("click",  playUi)
+start.addEventListener("click", restart)
