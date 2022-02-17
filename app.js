@@ -1,56 +1,52 @@
-console.log ("*************Juego*************")
-
-let Piedra = 1
-    , Papel = 2
-    , Tijera = 3
-    , playerSelection
-    , computerSelection
-    , computerString
-    , playerString
-    , result
-    , error = false
-
-
-
-function computerPlay (){
-    computerSelection = Math.floor(Math.random() * (4 - 1)) + 1
-    if (computerSelection === 1 )
-        computerString = "Piedra"
-    else if (computerSelection === 2 )
-        computerString = "Papel"
-    else if (computerSelection === 3 )
-        computerString = "Tijera"
+function creaButton (nombre){
+    let button = document.createElement ("button")
+    button.setAttribute("id", nombre)
+    button.innerText = nombre
+    let container = document.querySelector(".container");
+    container.appendChild (button);
+    return (button)
 }
 
-function playerPlay (){
-    playerSelection = parseInt(prompt("ingrese 1 para Piedra, 2 para Papel y 3 para Tijeras"))
-    if (playerSelection === 1 )
-        playerString = "Piedra"
-    else if (playerSelection === 2 )
-        playerString = "Papel"
-    else if (playerSelection === 3 )
-        playerString = "Tijera"
-    else
-        error = true
+function cpuPlay (){
+    let cpuSelect = Math.floor(Math.random() * (4 - 1)) + 1
+    if (cpuSelect === 1 ){return "piedra"}
+    else if (cpuSelect === 2 ){return "papel"}
+    else if (cpuSelect === 3 ){return "tijera"}
 }
 
-function play (p, c){
-    if( p === c )
-        result = "Empate"
-    else if ( (p === Piedra && c === Papel) || (p === Papel && c === Tijera) || (p === Tijera && c === Piedra) )
-        result = "Perdiste"
-    else
-        result = "Ganaste"
+function playUi (Event) {
+    let cpu = cpuPlay()
+    let player = Event.target.id
+    if( cpu === player)
+        p.innerText = `Empate. Cpu Jugo ${cpu} y Jugador ${player}. Puntuacion ${contador}.`
+    else if ( (cpu === "papel" && player === "piedra") || (cpu === "piedra" && player === "tijera")|| (cpu === "tijera" && player === "papel")) {
+        contador -= 1
+        p.innerText = `Perdiste. Cpu Jugo ${cpu} y Jugador ${player}. Puntuacion ${contador}.`
+        if (contador < -4)
+            gameOver("Perdiste")
+    }
+    else {
+        contador += 1
+        p.innerText = `Ganaste. Cpu Jugo ${cpu} y Jugador ${player}. Puntuacion ${contador}.`
+        if (contador > 4)
+            gameOver ("Ganaste")    
+    }
 }
 
-computerPlay()
-console.log(`Computadora eligio ${computerSelection} = ${computerString}`)
+function gameOver (result){
+    //escribir una funcion que deshabilite los botones y publique el fn del juego con el resultado
+    console.log(result);
+}
 
-playerPlay()
-console.log(`Jugador eligo ${playerSelection} = ${playerString}`)
+let container = document.querySelector(".container");
+let p = document.createElement ("p")
+p.innerText = "Selecciona"
+container.appendChild(p)
 
-play(playerSelection, computerSelection)
-if (error)
-    console.log( "Debes introducir un numero entre 1 y 3")
-else 
-    console.log(result )
+let contador= 0
+let piedra = creaButton("piedra")
+let papel = creaButton("papel")
+let tijera = creaButton("tijera")
+piedra.addEventListener ("click",  playUi)
+papel.addEventListener ("click",  playUi)
+tijera.addEventListener ("click",  playUi)
